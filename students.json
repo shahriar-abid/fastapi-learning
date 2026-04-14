@@ -1,0 +1,66 @@
+[
+    {
+        "id": 1,
+        "name": "Abid Hasan",
+        "email": "abid.hasan@gmail.com",
+        "age": 22,
+        "department": "CSE",
+        "cgpa": 3.85,
+        "courses": [
+            "Data Structures",
+            "Database Systems",
+            "Machine Learning"
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Nusrat Jahan",
+        "email": "nusrat.jahan@gmail.com",
+        "age": 21,
+        "department": "EEE",
+        "cgpa": 3.72,
+        "courses": [
+            "Circuits",
+            "Signals and Systems",
+            "Electronics"
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Rahim Ahmed",
+        "email": "rahim.ahmed@gmail.com",
+        "age": 23,
+        "department": "BBA",
+        "cgpa": 3.60,
+        "courses": [
+            "Marketing",
+            "Finance",
+            "Management"
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Sadia Islam",
+        "email": "sadia.islam@gmail.com",
+        "age": 22,
+        "department": "CSE",
+        "cgpa": 3.90,
+        "courses": [
+            "Operating Systems",
+            "AI",
+            "Computer Networks"
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Tanvir Hossain",
+        "email": "tanvir.hossain@gmail.com",
+        "age": 24,
+        "department": "Civil",
+        "cgpa": 3.55,
+        "courses": [
+            "Structural Analysis",
+            "Geotechnical Engineering"
+        ]
+    }
+]
