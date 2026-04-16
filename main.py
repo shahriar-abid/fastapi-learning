@@ -1,13 +1,30 @@
 from fastapi import FastAPI, Path, HTTPException, Query
+from fastapi.responses import  JSONResponse
+from pydantic import BaseModel, Field, EmailStr
+from typing import Annotated, Literal, List
 import json
 
+
 app = FastAPI()
+
+class Student(BaseModel):
+    id : Annotated[int, Field(..., description= ' Id of the student', examples= [1, 4, 5])]
+    name : Annotated[str, Field(..., description= ' Name of the student')]
+    email : Annotated[EmailStr, Field(..., description= ' email Of the student')]  
+    age : Annotated[int, Field(...,gt =0, lt=120, description= 'Age of the student')]
+    department : Annotated[Literal['CSE', 'EEE', 'BBA' ], Field(..., description= ' Department of the student')]
+    cgpa : Annotated[float, Field(..., gt = 0.0, lt =4.1, description= ' Cgpa of the student')] 
+    courses : Annotated[List[str], Field(...,min_items =1, description= ' Couses taken by the student')] 
 
 def load_data():
     with open('students.json', 'r') as j:
         data = json.load(j)
 
     return data
+
+def save_data(data):
+    with open('students.json', 'w') as f:
+        json.dump(data, f)
 
 
 @app.get("/")
@@ -54,3 +71,22 @@ def sort_students(
     sorted_data = sorted(data, key=lambda x: x[sort_by], reverse=reverse)
 
     return sorted_data
+
+
+@app.post('/create')
+def create_student(student : Student):
+    #load existing data
+    data = load_data()
+    # check if the student already exists
+    for s in data:
+        if s['id'] == student.id:
+            raise HTTPException(status_code=400, detail="Student already exists")
+    #add new students to database
+    new_student = student.model_dump()
+    data.append(new_student)
+    #save to database
+    save_data(data)
+
+    return JSONResponse(status_code=201, content = {
+        "message": "Student added successfully"
+    })
